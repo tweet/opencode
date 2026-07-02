@@ -17,7 +17,6 @@ if (!Script.preview) {
   await Bun.write(notesFile, body)
   await $`gh release create v${Script.version} -d --target ${sha} --title "v${Script.version}" --notes-file ${notesFile}`
   const release = await $`gh release view v${Script.version} --json tagName,databaseId`.json()
-  const release = {};
   output.push(`release=${release.databaseId}`)
   output.push(`tag=${release.tagName}`)
 } else if (Script.channel === "beta") {
