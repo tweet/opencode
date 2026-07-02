@@ -69,7 +69,7 @@ jobs:
       repo: ${{ steps.version.outputs.repo }}
 
   build-cli:
-    #needs: version
+    needs: version
     runs-on: ubuntu-latest
     if: github.repository == 'tweet/opencode'
     steps:
