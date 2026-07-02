@@ -34,7 +34,7 @@ permissions:
 jobs:
   version:
     runs-on: ubuntu-latest
-    if: github.repository == 'tweet/opencode'
+    if: github.repository == 'tweet/opencode1'
     steps:
       - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
         with:
@@ -79,12 +79,12 @@ jobs:
 
       - uses: ./.github/actions/setup-bun
 
-      - name: Setup git committer
-        id: committer
-        uses: ./.github/actions/setup-git-committer
-        with:
-          opencode-app-id: ${{ vars.OPENCODE_APP_ID }}
-          opencode-app-secret: ${{ secrets.OPENCODE_APP_SECRET }}
+      # - name: Setup git committer
+      #   id: committer
+      #   uses: ./.github/actions/setup-git-committer
+      #   with:
+      #     opencode-app-id: ${{ vars.OPENCODE_APP_ID }}
+      #     opencode-app-secret: ${{ secrets.OPENCODE_APP_SECRET }}
 
       - name: Build
         id: build
@@ -97,12 +97,12 @@ jobs:
           GH_REPO: ${{ needs.version.outputs.repo }}
           GH_TOKEN: ${{ steps.committer.outputs.token }}
 
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
-        with:
-          name: opencode-cli
-          path: |
-            packages/opencode/dist/opencode-darwin*
-            packages/opencode/dist/opencode-linux*
+      # - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      #   with:
+      #     name: opencode-cli
+      #     path: |
+      #       packages/opencode/dist/opencode-darwin*
+      #       packages/opencode/dist/opencode-linux*
 
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
